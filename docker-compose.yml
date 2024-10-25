@@ -1,0 +1,66 @@
+services:
+  app:
+    build:
+      context: ./dockerfiles/frankenphp
+      dockerfile: frankenphp.dockerfile
+      args:
+        WWWUSER: 1000
+        WWWGROUP: 1000
+    image: laravel-app
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    ports:
+      - ${APP_PORT:-80}:80
+      - ${APP_PORT_HTTPS:-443}:443
+      - ${APP_PORT_HTTP3:-443}:443/udp
+      - ${VITE_PORT:-5173}:${VITE_PORT:-5173}
+    working_dir: /app/public
+    environment:
+      WWWUSER: 1000
+      WWWGROUP: 1000
+    volumes:
+      - ./src/:/app/public
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - laravel
+
+  postgresql:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: laravel
+      POSTGRES_USER: laravel
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5432:5432"
+    networks:
+      - laravel
+      
+  composer:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/composer/composer.dockerfile
+      args:
+        WWWUSER: 1000
+        WWWGROUP: 1000
+    volumes:
+      - ./src/:/app/public
+    working_dir: /app/public
+    environment:
+      WWWUSER: 1000
+      WWWGROUP: 1000
+    networks:
+      - laravel
+
+
+
+# Volumes needed for Caddy certificates and configuration
+volumes:
+  caddy_data:
+  caddy_config:
+
+networks:
+  laravel:
+    driver: bridge
+
