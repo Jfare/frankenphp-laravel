@@ -53,12 +53,21 @@ services:
     networks:
       - laravel
 
+  npm:
+    image: node:current-alpine
+    volumes:
+      - ${PWD}:/app/public
+    entrypoint: ["npm"]
+    working_dir: /app/public
+    networks:
+      - laravel
 
 
 # Volumes needed for Caddy certificates and configuration
 volumes:
   caddy_data:
   caddy_config:
+  postgres_data: {}
 
 networks:
   laravel:
