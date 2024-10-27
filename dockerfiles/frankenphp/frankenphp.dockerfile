@@ -24,13 +24,10 @@ RUN install-php-extensions \
     gd \
     intl \
     zip \
-    opcache \
-    @composer
+    opcache
 
 COPY php.ini /usr/local/etc/php/
 
-RUN mkdir -p /var/www/.composer && \
-    chown -R ${WWWUSER}:${WWWUSER} /var/www/.composer
 
 RUN chown -R ${WWWUSER}:${WWWUSER} /app/public
 

@@ -1,4 +1,4 @@
-FROM composer:2
+FROM composer:latest
 
 ARG WWWUSER
 ARG WWWGROUP

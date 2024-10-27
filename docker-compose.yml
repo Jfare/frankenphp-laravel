@@ -1,5 +1,5 @@
 services:
-  app:
+  php:
     build:
       context: ./dockerfiles/frankenphp
       dockerfile: frankenphp.dockerfile
@@ -50,13 +50,16 @@ services:
     environment:
       WWWUSER: 1000
       WWWGROUP: 1000
+    depends_on:
+      - php
+    entrypoint: [ 'composer' ]
     networks:
       - laravel
 
   npm:
     image: node:current-alpine
     volumes:
-      - ${PWD}:/app/public
+      - ./src/:/app/public
     entrypoint: ["npm"]
     working_dir: /app/public
     networks:
@@ -68,6 +71,7 @@ volumes:
   caddy_data:
   caddy_config:
   postgres_data: {}
+  composer_cache: {}
 
 networks:
   laravel:
