@@ -16,9 +16,9 @@ Open your baschrc with the following command:
 Add the following lines at the bottom of the file:
 (you can name your aliases to anything you want, the following aliases are only suggestions)
 
-**composer** - alias dcomposer "docker compose run --rm composer"
-**npm** - alias dnpm "docker compose run --rm npm"
-**php** - alias dphp "docker compose run php php"
+**composer** - alias dcomposer "docker compose run --rm composer"  
+**npm** - alias dnpm "docker compose run --rm npm"  
+**php** - alias dphp "docker compose run php php"  
 
 ### macOS
 
@@ -28,9 +28,9 @@ Open your shell-profile with the following command:
 Add the following lines at the bottom of the file:
 (you can name your aliases to anything you want, the following aliases are only suggestions)
 
-**composer** - alias dcomposer "docker compose run --rm composer"
-**npm** - alias dnpm "docker compose run --rm npm"
-**php** - alias dphp "docker compose run php php"
+**composer** - alias dcomposer "docker compose run --rm composer"  
+**npm** - alias dnpm "docker compose run --rm npm"  
+**php** - alias dphp "docker compose run php php"  
 
 ### Windows
 Open your Powershell-profile with the following line:
@@ -38,9 +38,9 @@ Open your Powershell-profile with the following line:
 
 Add the following lines:
 
-function dcomposer { docker compose run --rm composer --% $args }
-function dnpm { docker compose run --rm npm --% $args }
-function dphp { docker compose run php php --% $args }
+**composer** function dcomposer { docker compose run --rm composer --% $args }  
+**npm** function dnpm { docker compose run --rm npm --% $args }  
+**php** function dphp { docker compose run php php --% $args }  
 
 restart Powershell or run & $PROFILE
 
