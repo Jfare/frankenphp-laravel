@@ -60,7 +60,7 @@ services:
     image: node:current-alpine
     volumes:
       - ./src/:/app/public
-    entrypoint: ["npm"]
+    entrypoint: [ 'npm' ]
     working_dir: /app/public
     networks:
       - laravel
