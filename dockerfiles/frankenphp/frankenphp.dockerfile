@@ -26,6 +26,13 @@ RUN install-php-extensions \
     zip \
     opcache
 
+# Install Node.js and npm
+RUN apk add --no-cache nodejs npm
+
+
+RUN mkdir -p /usr/local/lib/node_modules && \
+    chown -R $WWWUSER:$WWWGROUP /usr/local/lib/node_modules /usr/local/bin /usr/local/share
+
 COPY php.ini /usr/local/etc/php/
 
 

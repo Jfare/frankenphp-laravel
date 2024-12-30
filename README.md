@@ -17,8 +17,8 @@ Add the following lines at the bottom of the file:
 (you can name your aliases to anything you want, the following aliases are only suggestions)
 
 **composer** - alias dcomposer "docker compose run --rm composer"  
-**npm** - alias dnpm "docker compose run --rm npm"  
-**php** - alias dphp "docker compose run php php"  
+**npm** - alias dnpm "docker compose exec php npm"  
+**php** - alias dphp "docker compose exec php php"  
 
 ### macOS
 
@@ -29,8 +29,8 @@ Add the following lines at the bottom of the file:
 (you can name your aliases to anything you want, the following aliases are only suggestions)
 
 **composer** - alias dcomposer "docker compose run --rm composer"  
-**npm** - alias dnpm "docker compose run --rm npm"  
-**php** - alias dphp "docker compose run php php"  
+**npm** - alias dnpm "docker compose exec php npm"  
+**php** - alias dphp "docker compose exec php php"  
 
 ### Windows
 Open your Powershell-profile with the following line:
@@ -51,3 +51,31 @@ Assuming you have created the aliases above:
 run the following command in your project root directory:
 
 "dcomposer create-project laravel/laravel ." 
+
+## Use Vite in your project
+
+Update vite.config.js to look like this:
+
+
+export default defineConfig({
+    plugins: [
+        laravel({
+            input: ['resources/css/app.css', 'resources/js/app.js'],
+            refresh: true,
+        }),
+    ],
+    server: {
+        host: '0.0.0.0',
+        port: 5173,
+        strictPort: true,
+        cors: {
+            origin: 'https://localhost',
+            credentials: true,
+        },
+        hmr: {
+            host: 'localhost',
+        },
+    },
+});
+
+

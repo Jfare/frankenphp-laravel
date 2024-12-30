@@ -56,19 +56,6 @@ services:
     networks:
       - laravel
 
-  npm:
-    image: node:current-alpine
-    volumes:
-      - ./src/:/app/public
-    entrypoint: [ 'npm' ]
-    user: node
-    working_dir: /app/public
-    ports:
-      - "3000:3000"
-      - "3001:3001"
-    networks:
-      - laravel
-
 
 # Volumes needed for Caddy certificates and configuration
 volumes:
