@@ -39,8 +39,8 @@ Open your Powershell-profile with the following line:
 Add the following lines:
 
 **composer** function dcomposer { docker compose run --rm composer --% $args }  
-**npm** function dnpm { docker compose run --rm npm --% $args }  
-**php** function dphp { docker compose run php php --% $args }  
+**npm** function dnpm { docker compose exec php npm --% $args }  
+**php** function dphp { docker compose exec php php --% $args }  
 
 restart Powershell or run & $PROFILE
 
