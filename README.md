@@ -1,11 +1,13 @@
-# Docker environment for FrankenPHP with Composer and NPM
+# Docker environment for Laravel with FrankenPHP
 
 ## Prerequisites
 
 Docker Engine
-(or Docker Desktop which inlcudes Docker Engine).
+(or Docker Desktop which includes Docker Engine).
 
 If you are using Linux you will have to create a directory called "src" unless you are the root user.
+Otherwise everything created with your docker compose commands will end up with root as owner.
+
 
 ## Create a Aliases for easier use
 
@@ -43,6 +45,13 @@ Add the following lines:
 **php** function dphp { docker compose exec php php --% $args }  
 
 restart Powershell or run & $PROFILE
+
+## Build and run your docker containers
+-build your docker containers with the following command:
+docker compose build
+
+-Run your docker containers with the following command:
+docker compose up
 
 ## Create a new Laravel Project
 
